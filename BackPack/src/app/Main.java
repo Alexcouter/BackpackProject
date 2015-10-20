@@ -1,7 +1,10 @@
-package backpack;
+package app;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import backpack.Backpack;
+import backpack.Objet;
 
 public class Main {
 
