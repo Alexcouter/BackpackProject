@@ -11,10 +11,19 @@ public class Objet {
 		this.valeur = valeur;
 	}
 
-	float getCout(){
+	public float getCout(){
 		if(poids == 0)
 			return valeur;
 		else
 			return (valeur/poids);
+	}
+	
+	public int compareTo(Objet o){
+		if(o.getCout() == this.getCout() )
+			return 0;
+		else if(o.getCout() < this.getCout())
+			return 1;
+		else
+			return -1;
 	}
 }

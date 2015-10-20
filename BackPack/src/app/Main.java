@@ -5,6 +5,7 @@ import java.util.List;
 
 import backpack.Backpack;
 import backpack.Objet;
+import backpack.PileObjet;
 
 public class Main {
 
@@ -15,14 +16,14 @@ public class Main {
 		Objet objet3 = new Objet("fourchete", 1, 20);
 		Objet objet4 = new Objet("assiette", 4, 100);
 		
-		List<Objet> collec1 = new ArrayList<Objet>();
+		ArrayList<Objet> collec1 = new ArrayList<Objet>();
 		collec1.add(objet1);
 		collec1.add(objet2);
 		collec1.add(objet3);
 		collec1.add(objet4);
 		
-		Backpack sac1 = new Backpack(15, collec1);
-		System.out.println(sac1);
+		PileObjet mapile = new PileObjet(collec1);
+		
 	}
 
 }
