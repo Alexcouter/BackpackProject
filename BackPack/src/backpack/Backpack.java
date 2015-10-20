@@ -1,5 +1,6 @@
 package backpack;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Backpack {
@@ -58,8 +59,11 @@ public class Backpack {
 		return this.poidsMax;
 	}
 	
-	public Collection<Objet> getObjets(){
-		return this.objets;
+	public ArrayList<Objet> getObjets(){
+		ArrayList<Objet> res = new ArrayList<Objet>();
+		for(Objet obj: objets)
+			res.add(obj);
+		return res;
 	}
 	
 	public void addObjet(Objet o){
