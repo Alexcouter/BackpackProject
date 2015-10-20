@@ -19,6 +19,12 @@ public class Objet {
 	}
 	
 	
+	public Objet(float poids, float valeur) {
+		super();
+		this.poids = poids;
+		this.valeur = valeur;
+	}
+
 	public int compareTo(Objet o){
 		if(o.getCout() == this.getCout() )
 			return 0;
