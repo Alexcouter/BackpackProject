@@ -53,4 +53,16 @@ public class Backpack {
 			cout_total += obj.getCout();
 		return cout_total;
 	}
+	
+	public float getPoidsMax(){
+		return this.poidsMax;
+	}
+	
+	public Collection<Objet> getObjets(){
+		return this.objets;
+	}
+	
+	public void addObjet(Objet o){
+		objets.add(o);
+	}
 }

@@ -18,13 +18,21 @@ private Stack<Objet> pile;
 	            return  o1.compareTo(o2);
 	        }
 	    });
-		for(Objet obj : list){
-			pile.push(obj);
+		if(list.size()>0){
+			pile = new Stack<Objet>();
+			for(Objet obj : list){
+				pile.push(obj);
+			}
 		}
+		
 	}
 	
 	public Objet depiler(){
 		return pile.pop();
+	}
+	
+	public int estVide(){
+		return pile.size();
 	}
 	
 	public String toString() {
