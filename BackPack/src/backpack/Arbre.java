@@ -12,7 +12,6 @@ public class Arbre {
 		this.droit = null;
 	}
 	
-	
 	public void parcours(){
 		System.out.println(sac);
 		if(gauche != null)
@@ -20,7 +19,6 @@ public class Arbre {
 		if(droit != null)
 			droit.parcours();
 	}
-	
 	
 	public Backpack getSac(){
 		return this.sac;

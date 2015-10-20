@@ -11,6 +11,11 @@ public class Objet {
 		this.valeur = valeur;
 	}
 
+	public Objet(int poids, int valeur) {
+		this.poids = poids;
+		this.valeur = valeur;
+	}
+
 	float getCout(){
 		if(poids == 0)
 			return valeur;
