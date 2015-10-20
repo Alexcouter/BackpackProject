@@ -1,15 +1,16 @@
 package backpack;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Stack;
 
 public class PileObjet {
-	
-	private Stack<Objet> pile;
+
+private Stack<Objet> pile;
 	
 	public PileObjet(ArrayList<Objet> list){
-		list.sort(new Comparator<Objet>() {
+		Collections.sort(list,new Comparator<Objet>() {
 	        @Override
 	        public int compare(Objet  o1, Objet o2)
 	        {
