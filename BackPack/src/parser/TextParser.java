@@ -19,7 +19,7 @@ public class TextParser {
 		this.objets = new ArrayList<Objet>();
 	}
 
-	protected ArrayList<Objet> parse() throws IOException{
+	public ArrayList<Objet> parse() throws IOException{
 		BufferedReader bufRead = new BufferedReader(this.input);
 		String ligne = null;
 
@@ -28,14 +28,19 @@ public class TextParser {
 			if(ligne.startsWith("#")){}
 			else{
 				String[] array1 = ligne.split(" ");
-				if(array1[1].equals("")){}
-				else
+				if(!array1[1].equals("")){
 					objets.add(
 							new Objet(
 									Integer.parseInt(array1[0]),  
 									Integer.parseInt(array1[1])
 									)
 							);
+//					System.out.println(array1[0] + " - " + array1[1]);
+				}
+				else{
+					
+				}
+
 			}
 
 		}
