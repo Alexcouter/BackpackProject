@@ -1,7 +1,5 @@
 package backpack;
 
-import java.util.ArrayList;
-
 public class Arbre {
 	
 	private Backpack sac;
