@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Stack;
 
-public class PileObjet {
+public class PileObjet implements Cloneable{
 
 private Stack<Objet> pile;
 	
@@ -25,6 +25,18 @@ private Stack<Objet> pile;
 			}
 		}
 		
+	}
+	
+	
+	
+	public PileObjet(Stack<Objet> mapile){
+		this.pile = new Stack<Objet>();
+		this.pile = mapile;
+	}
+	
+	public PileObjet clone(){
+		PileObjet monClone = new PileObjet((Stack<Objet>) this.pile.clone());
+		return monClone;
 	}
 	
 	public Objet depiler(){

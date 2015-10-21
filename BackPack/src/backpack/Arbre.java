@@ -17,24 +17,20 @@ public class Arbre {
 		
 	}
 	
-	public void arbre(PileObjet pile, String rendu){
-		System.out.println(rendu + " taille pile : " + pile.estVide());
-		//System.out.println(pile);
-		//System.out.println("pallier : " + this.pallier);
+	public void creationArbre(PileObjet pile){
+	
+		
 		if(pile.estVide() > 0){
 			Backpack sacDroit = new Backpack(this.sac.getPoidsMax(), sac.getObjets());
-			//System.out.println("sac avant" + sac);
+			
 			sacDroit.addObjet(pile.depiler());
-			//System.out.println("sac apres" + sac);
-			//Arbre droit1 = );
+			PileObjet pile2 = pile.clone();
 			
 			this.setDroit(new Arbre(new Backpack(this.sac.getPoidsMax(), sacDroit.getObjets())));
-			this.droit.arbre(pile, rendu+ " Droit");
+			this.droit.creationArbre(pile);
 			
-			//Backpack sacGauche = new Backpack(this.sac.getPoidsMax(), new ArrayList<Objet>());
-			//Arbre gauche2 = new Arbre(sacGauche);
 			this.setGauche(new Arbre(new Backpack(this.sac.getPoidsMax(), sac.getObjets())));
-			this.gauche.arbre(pile, rendu + " Gauche");
+			this.gauche.creationArbre(pile2);
 		}
 		else{
 			this.setGauche(null);
