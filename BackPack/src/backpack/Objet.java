@@ -1,6 +1,6 @@
 package backpack;
 
-public class Objet {
+public class Objet implements Cloneable{
 
 	String nom;
 	float poids,valeur;
@@ -24,6 +24,10 @@ public class Objet {
 		this.poids = poids;
 		this.valeur = valeur;
 	}
+	
+	public float getPoids(){
+		return this.poids;
+	}
 
 	public int compareTo(Objet o){
 		if(o.getCout() == this.getCout() )
@@ -32,5 +36,10 @@ public class Objet {
 			return 1;
 		else
 			return -1;
+	}
+	
+	public Objet clone(){
+		Objet monClone = new Objet(this.nom, this.poids, this.valeur);
+		return monClone;
 	}
 }

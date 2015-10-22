@@ -2,25 +2,31 @@ package backpack;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Stack;
 
-public class Backpack {
+public class Backpack implements Cloneable{
 	float poidsMax;
-	Collection<Objet> objets;
+	ArrayList<Objet> objets;
 
-	public Backpack(float poidsMax, Collection<Objet> objets) {
+	public Backpack(float poidsMax, ArrayList<Objet> objets) {
 		super();
 		this.poidsMax = poidsMax;
 		this.objets = objets;
 	}
 
-	float getDiff(){
+	public float getDiff(){
 		return poidsMax - getPoids();
 	}
 
-	boolean tropPlein(){
+	public boolean tropPlein(){
 		return (poidsMax >= getPoids());
 	}
-
+	
+	public Backpack clone(){
+		@SuppressWarnings("unchecked")
+		Backpack monClone = new Backpack(this.poidsMax, (ArrayList<Objet>) this.objets.clone());
+		return monClone;
+	}
 	@Override
 	public String toString() {
 		String display = "";
@@ -34,21 +40,21 @@ public class Backpack {
 		return display;
 	}
 
-	float getValeur(){
+	public float getValeur(){
 		float valeur_totale = 0;
 		for(Objet obj: objets)
 			valeur_totale += (int)obj.valeur;
 		return valeur_totale;
 	}
 
-	float getPoids(){
+	public float getPoids(){
 		float poids_total = 0;
 		for(Objet obj: objets)
 			poids_total += obj.poids;
 		return poids_total;
 	}
 
-	float getCout(){
+	public float getCout(){
 		float cout_total = 0;
 		for(Objet obj: objets)
 			cout_total += obj.getCout();
