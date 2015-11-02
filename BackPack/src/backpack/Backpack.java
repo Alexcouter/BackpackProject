@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Stack;
 
-public class Backpack implements Cloneable{
+public class Backpack implements Cloneable, Comparable{
 	float poidsMax;
 	ArrayList<Objet> objets;
 
@@ -30,7 +30,7 @@ public class Backpack implements Cloneable{
 	@Override
 	public String toString() {
 		String display = "";
-		display += "Liste des objets : \n ";
+		display += "Liste des objets : value  "+this.getValeur()+"\n ";
 		if(this.objets.size() > 0){	
 			for(Objet obj : this.objets)
 				display += obj.nom + " : " + obj.getCout() + " (" + obj.valeur + "/" + obj.poids + ") \n";
@@ -74,5 +74,16 @@ public class Backpack implements Cloneable{
 	
 	public void addObjet(Objet o){
 		objets.add(o);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Backpack comp = (Backpack) o;
+		if(this.getValeur() < comp.getValeur())
+			return 1;
+		else if(this.getValeur() > comp.getValeur())
+			return -1;
+		else
+			return 0;
 	}
 }

@@ -1,34 +1,59 @@
 package app;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import parser.TextParser;
 import backpack.Arbre;
+import backpack.ArbreN;
 import backpack.Backpack;
 import backpack.Objet;
 import backpack.PileObjet;
+import parser.TextParser;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
 		long startTime = System.currentTimeMillis(); 
-//		Objet objet1 = new Objet("cuillere", 1, 10);
-//		Objet objet2 = new Objet("couteau", 2, 5);
-//		Objet objet3 = new Objet("fourchete", 1, 20);
-//		//Objet objet4 = new Objet("assiette", 4, 100);
+		Objet objet1 = new Objet("cuillere", 33, 4);
+		Objet objet2 = new Objet("couteau", 49, 5);
+		Objet objet3 = new Objet("fourchete", 51, 5);
+		Objet objet4 = new Objet("assiette", 22, 2);
 //		
-//		ArrayList<Objet> collec1 = new ArrayList<Objet>();
-//		collec1.add(objet1);
-//		collec1.add(objet2);
-//		collec1.add(objet3);
-//		//collec1.add(objet4);
+		ArrayList<Objet> collec1 = new ArrayList<Objet>();
+		collec1.add(objet1);
+		collec1.add(objet2);
+		collec1.add(objet3);
+		collec1.add(objet4);
+		
+
+		TextParser parser = new TextParser(new File("data\\large02.txt"));
+		
+		
 //		
-//		PileObjet pile = new PileObjet(collec1);
-//		Backpack sac1 = new Backpack(8, new ArrayList<Objet>());
+		PileObjet pile = new PileObjet(parser.parse());
+		Backpack sac1 = new Backpack(431, new ArrayList<Objet>());
+		ArbreN aN = new ArbreN(sac1);
+		aN.creationArbreN(pile);
+		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
+		aN.solutionV1();
+		
+		/*Arbre a = new Arbre(sac1);
+		a.creationArbre(pile);
+		//a.parcours();
+		System.out.println("best : " + a.rechercheV1());*/
+		
+		
+		/*System.out.println(aN.getArbres().get(0).getSac());
+		System.out.println(aN.getArbres().get(1).getSac());
+		System.out.println(aN.getArbres().get(2).getSac());
+		System.out.println(aN.getArbres().get(3).getSac());
+		System.out.println(aN.getArbres().get(0).getArbres().get(0).getSac());
+		System.out.println(aN.getArbres().get(0).getArbres().get(1).getSac());
+		System.out.println(aN.getArbres().get(0).getArbres().get(2).getSac());
+		System.out.println(aN.getArbres().get(0).getArbres().get(2).getArbres().get(0).getArbres().get(0));*/
+		//39 noeuds 18 noeuds en trop
 //		Arbre a = new Arbre(sac1);
 //		a.creationArbre(pile);
 //		System.out.println("nb noeud"+ a.nbNoeuds(a));
@@ -55,9 +80,6 @@ public class Main {
 		System.out.println(a.getGauche().getDroit().getSac());
 		*/
 		
-		TextParser parser = new TextParser(new File("data\\large01.txt"));
-		
-		parser.parse();
 		
 		long estimatedTime = System.currentTimeMillis() - startTime;
 		

@@ -24,7 +24,7 @@ public class ArbreN {
 			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());
 			Objet o = pile.depiler();
 			this.arbres.add(new ArbreN(newSac.clone()));
-			while(newSac.getPoids() + o.getPoids() < newSac.getPoidsMax()){
+			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){
 				newSac.addObjet(o);
 				this.arbres.add(new ArbreN(newSac.clone()));
 			}
@@ -34,7 +34,7 @@ public class ArbreN {
 		else if(pile.estVide() == 1){ //si c'est le dernier objet de la pile, on en met autant que l'on peut sans créer de branche inutile
 			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());
 			Objet o = pile.depiler();
-			while(newSac.getPoids() + o.getPoids() < newSac.getPoidsMax()){
+			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){
 				newSac.addObjet(o);
 			}
 			this.arbres.add(new ArbreN(newSac.clone()));
@@ -43,13 +43,18 @@ public class ArbreN {
 		}
 	}
 	
-	public Backpack solution(){
+	public Backpack solutionV1(){
 		// a faire
-		
-		
-		
-		
-		return null;
+		Backpack res = new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>());
+		Backpack res2 = new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>());
+		if(arbres.size()>0)
+			for(ArbreN arb: arbres){
+				res2 = arb.solutionV1();
+				if(res.compareTo(res2) == 1){
+					res = res2;
+				}
+			}
+		return res;
 	}
 	
 	public ArrayList<ArbreN> getArbres(){
