@@ -45,15 +45,17 @@ public class ArbreN {
 	
 	public Backpack solutionV1(){
 		// a faire
-		Backpack res = new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>());
-		Backpack res2 = new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>());
-		if(arbres.size()>0)
+		Backpack res = new Backpack(this.sac.getPoidsMax(), new ArrayList<Objet>());
+		Backpack res2;
+		if(arbres.size()>0){
+			res = this.arbres.get(0).getSac();
 			for(ArbreN arb: arbres){
 				res2 = arb.solutionV1();
 				if(res.compareTo(res2) == 1){
 					res = res2;
 				}
 			}
+		}
 		return res;
 	}
 	

@@ -36,8 +36,9 @@ public class Main {
 		Backpack sac1 = new Backpack(431, new ArrayList<Objet>());
 		ArbreN aN = new ArbreN(sac1);
 		aN.creationArbreN(pile);
+		System.out.println("Arbre Créé.");
 		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
-		aN.solutionV1();
+		System.out.println("Solution : " + aN.solutionV1());
 		
 		/*Arbre a = new Arbre(sac1);
 		a.creationArbre(pile);
