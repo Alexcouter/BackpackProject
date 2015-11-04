@@ -1,12 +1,16 @@
 package backpack;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class ArbreN {
 	
 	private Backpack sac;
 	private ArrayList<ArbreN> arbres;
 	private static int nbNoeuds = 0;
+	private boolean worth;
+	private static float solution = 0;
+	private static Backpack sacSolution;
 	
 	public int getNbNoeuds() {
 		return nbNoeuds;
@@ -16,6 +20,7 @@ public class ArbreN {
 		this.nbNoeuds++;
 		this.sac = monSac;
 		this.arbres = new ArrayList<ArbreN>();
+		this.worth = true;
 	}
 	
 	public void creationArbreN(PileObjet pile){
@@ -40,11 +45,12 @@ public class ArbreN {
 			this.arbres.add(new ArbreN(newSac.clone()));
 			for(ArbreN arb: arbres)
 				arb.creationArbreN(pile.clone());
+			this.sacSolution= new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>() );
 		}
 	}
 	
 	public Backpack solutionV1(){
-		// a faire
+		
 		Backpack res = new Backpack(this.sac.getPoidsMax(), new ArrayList<Objet>());
 		Backpack res2;
 		if(arbres.size()>0){
@@ -59,11 +65,48 @@ public class ArbreN {
 		return res;
 	}
 	
+	public void solutionV2(PileObjet pile){
+		
+		Objet current;
+		if(arbres.size() == 1){
+			current = pile.depiler();
+			arbres.get(0).solutionV2(pile.clone());
+		}
+		else if(arbres.size()>1){
+			current = pile.depiler();
+			ListIterator<ArbreN> iterator = arbres.listIterator(arbres.size()); 
+			while(iterator.hasPrevious()){
+			   ArbreN item = iterator.previous();
+			   float calcul = item.getSac().getValeur() + (pile.top().getCout())*(item.getSac().getPoidsMax()-item.getSac().getPoids());
+			   if( calcul > solution+ 1){
+				   //solution = (int) calcul;
+				   item.solutionV2(pile.clone());
+			   }
+			} 
+		}
+		else{
+			System.out.println("test");
+			if(solution < sac.getValeur()){
+				solution = sac.getValeur();
+				sacSolution = this.sac;
+			}
+				
+		}
+	}
+	
+	public Backpack getSacSolution(){
+		return this.sacSolution;
+	}
+	
 	public ArrayList<ArbreN> getArbres(){
 		return this.arbres;
 	}
 	
 	public Backpack getSac(){
 		return this.sac;
+	}
+	
+	public float getSolution(){
+		return this.solution;
 	}
 }

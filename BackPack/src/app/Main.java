@@ -18,8 +18,8 @@ public class Main {
 		long startTime = System.currentTimeMillis(); 
 		Objet objet1 = new Objet("cuillere", 33, 4);
 		Objet objet2 = new Objet("couteau", 49, 5);
-		Objet objet3 = new Objet("fourchete", 51, 5);
-		Objet objet4 = new Objet("assiette", 22, 2);
+		Objet objet3 = new Objet("fourchete", 60, 6);
+		Objet objet4 = new Objet("assiette", 32, 2);
 //		
 		ArrayList<Objet> collec1 = new ArrayList<Objet>();
 		collec1.add(objet1);
@@ -28,17 +28,21 @@ public class Main {
 		collec1.add(objet4);
 		
 
-		TextParser parser = new TextParser(new File("data\\large02.txt"));
+		//TextParser parser = new TextParser(new File("data\\large02.txt"));
 		
 		
 //		
-		PileObjet pile = new PileObjet(parser.parse());
-		Backpack sac1 = new Backpack(431, new ArrayList<Objet>());
+		PileObjet pile = new PileObjet(collec1);
+		PileObjet pile2 = pile.clone();
+		Backpack sac1 = new Backpack(130, new ArrayList<Objet>());
 		ArbreN aN = new ArbreN(sac1);
 		aN.creationArbreN(pile);
 		System.out.println("Arbre Créé.");
 		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
-		System.out.println("Solution : " + aN.solutionV1());
+		//System.out.println("Solution V1: " + aN.solutionV1());
+		aN.solutionV2(pile2);
+		System.out.println("Solution V2: " + aN.getSolution());
+		System.out.println("Solution V2: " + aN.getSacSolution());
 		
 		/*Arbre a = new Arbre(sac1);
 		a.creationArbre(pile);

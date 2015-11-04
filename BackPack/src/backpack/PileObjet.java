@@ -58,5 +58,9 @@ private Stack<Objet> pile;
 			display += "Aucun objet dans le sac";
 		return display;
 	}
+	
+	public Objet top(){
+		return pile.peek();
+	}
 
 }
