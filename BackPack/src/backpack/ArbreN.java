@@ -26,14 +26,14 @@ public class ArbreN {
 	public void creationArbreN(PileObjet pile){
 		
 		if(pile.estVide() > 1){
-			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());
-			Objet o = pile.depiler();
-			this.arbres.add(new ArbreN(newSac.clone()));
-			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){
+			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());//création nouveau sac
+			Objet o = pile.depiler();//on dépile un objet
+			this.arbres.add(new ArbreN(newSac.clone()));//création nouveau fils vide
+			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){//on crée un fils a chaque meme objet que l'on peu rajouter
 				newSac.addObjet(o);
 				this.arbres.add(new ArbreN(newSac.clone()));
 			}
-			for(ArbreN arb: arbres)
+			for(ArbreN arb: arbres)//on rappelle la fonction sur les fils
 				arb.creationArbreN(pile.clone());
 		}
 		else if(pile.estVide() == 1){ //si c'est le dernier objet de la pile, on en met autant que l'on peut sans créer de branche inutile
@@ -75,7 +75,7 @@ public class ArbreN {
 		else if(arbres.size()>1){
 			current = pile.depiler();
 			ListIterator<ArbreN> iterator = arbres.listIterator(arbres.size()); 
-			while(iterator.hasPrevious()){
+			while(iterator.hasPrevious()){ 
 			   ArbreN item = iterator.previous();
 			   float calcul = item.getSac().getValeur() + (pile.top().getCout())*(item.getSac().getPoidsMax()-item.getSac().getPoids());
 			   if( calcul > solution+ 1){

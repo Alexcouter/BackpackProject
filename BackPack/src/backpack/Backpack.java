@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Stack;
 
-public class Backpack implements Cloneable, Comparable{
+public class Backpack implements Cloneable{
 	float poidsMax;
 	ArrayList<Objet> objets;
 
@@ -76,7 +76,7 @@ public class Backpack implements Cloneable, Comparable{
 		objets.add(o);
 	}
 
-	@Override
+	
 	public int compareTo(Object o) {
 		Backpack comp = (Backpack) o;
 		if(this.getValeur() < comp.getValeur())
