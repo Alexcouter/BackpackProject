@@ -86,7 +86,7 @@ public class ArbreN {
 			} 
 		}
 		else{
-			System.out.println("test");
+//			System.out.println("test");
 			if(solution < sac.getValeur()){
 				solution = sac.getValeur();
 				sacSolution = this.sac;

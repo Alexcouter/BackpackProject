@@ -35,11 +35,11 @@ public class Main {
 		Backpack sac1 = new Backpack(130, new LinkedList<Objet>());
 		ArbreN aN = new ArbreN(sac1);
 		aN.creationArbreN(pile);
-		System.out.println("Arbre Cr��.");
+		System.out.println("Arbre Créé.");
 		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
 		//System.out.println("Solution V1: " + aN.solutionV1());
 		aN.solutionV2(pile2);
-		System.out.println("Solution V2: " + aN.getSolution());
+//		System.out.println("Solution V2: " + aN.getSolution());
 		System.out.println("Solution V2: " + aN.getSacSolution());
 		
 		/*Arbre a = new Arbre(sac1);
