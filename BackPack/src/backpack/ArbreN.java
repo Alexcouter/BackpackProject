@@ -1,12 +1,13 @@
 package backpack;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class ArbreN {
 	
 	private Backpack sac;
-	private ArrayList<ArbreN> arbres;
+	private LinkedList<ArbreN> arbres;
 	private static int nbNoeuds = 0;
 	private boolean worth;
 	private static float solution = 0;
@@ -19,24 +20,24 @@ public class ArbreN {
 	public ArbreN(Backpack monSac){
 		this.nbNoeuds++;
 		this.sac = monSac;
-		this.arbres = new ArrayList<ArbreN>();
+		this.arbres = new LinkedList<ArbreN>();
 		this.worth = true;
 	}
 	
 	public void creationArbreN(PileObjet pile){
 		
 		if(pile.estVide() > 1){
-			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());//création nouveau sac
-			Objet o = pile.depiler();//on dépile un objet
-			this.arbres.add(new ArbreN(newSac.clone()));//création nouveau fils vide
-			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){//on crée un fils a chaque meme objet que l'on peu rajouter
+			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());//crï¿½ation nouveau sac
+			Objet o = pile.depiler();//on dï¿½pile un objet
+			this.arbres.add(new ArbreN(newSac.clone()));//crï¿½ation nouveau fils vide
+			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){//on crï¿½e un fils a chaque meme objet que l'on peu rajouter
 				newSac.addObjet(o);
 				this.arbres.add(new ArbreN(newSac.clone()));
 			}
 			for(ArbreN arb: arbres)//on rappelle la fonction sur les fils
 				arb.creationArbreN(pile.clone());
 		}
-		else if(pile.estVide() == 1){ //si c'est le dernier objet de la pile, on en met autant que l'on peut sans créer de branche inutile
+		else if(pile.estVide() == 1){ //si c'est le dernier objet de la pile, on en met autant que l'on peut sans crï¿½er de branche inutile
 			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());
 			Objet o = pile.depiler();
 			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){
@@ -45,13 +46,13 @@ public class ArbreN {
 			this.arbres.add(new ArbreN(newSac.clone()));
 			for(ArbreN arb: arbres)
 				arb.creationArbreN(pile.clone());
-			this.sacSolution= new Backpack(this.sac.getPoidsMax(),new ArrayList<Objet>() );
+			this.sacSolution= new Backpack(this.sac.getPoidsMax(),new LinkedList<Objet>() );
 		}
 	}
 	
 	public Backpack solutionV1(){
 		
-		Backpack res = new Backpack(this.sac.getPoidsMax(), new ArrayList<Objet>());
+		Backpack res = new Backpack(this.sac.getPoidsMax(), new LinkedList<Objet>());
 		Backpack res2;
 		if(arbres.size()>0){
 			res = this.arbres.get(0).getSac();
@@ -98,7 +99,7 @@ public class ArbreN {
 		return this.sacSolution;
 	}
 	
-	public ArrayList<ArbreN> getArbres(){
+	public LinkedList<ArbreN> getArbres(){
 		return this.arbres;
 	}
 	

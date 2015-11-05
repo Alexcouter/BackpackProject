@@ -1,15 +1,13 @@
 package app;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
-import backpack.Arbre;
 import backpack.ArbreN;
 import backpack.Backpack;
 import backpack.Objet;
 import backpack.PileObjet;
-import parser.TextParser;
 
 public class Main {
 
@@ -34,10 +32,10 @@ public class Main {
 //		
 		PileObjet pile = new PileObjet(collec1);
 		PileObjet pile2 = pile.clone();
-		Backpack sac1 = new Backpack(130, new ArrayList<Objet>());
+		Backpack sac1 = new Backpack(130, new LinkedList<Objet>());
 		ArbreN aN = new ArbreN(sac1);
 		aN.creationArbreN(pile);
-		System.out.println("Arbre Créé.");
+		System.out.println("Arbre Crï¿½ï¿½.");
 		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
 		//System.out.println("Solution V1: " + aN.solutionV1());
 		aN.solutionV2(pile2);

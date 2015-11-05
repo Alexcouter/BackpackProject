@@ -1,14 +1,13 @@
 package backpack;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Stack;
+import java.util.LinkedList;
 
 public class Backpack implements Cloneable{
 	float poidsMax;
-	ArrayList<Objet> objets;
+	LinkedList<Objet> objets;
 
-	public Backpack(float poidsMax, ArrayList<Objet> objets) {
+	public Backpack(float poidsMax, LinkedList<Objet> objets) {
 		super();
 		this.poidsMax = poidsMax;
 		this.objets = objets;
@@ -24,7 +23,7 @@ public class Backpack implements Cloneable{
 	
 	public Backpack clone(){
 		@SuppressWarnings("unchecked")
-		Backpack monClone = new Backpack(this.poidsMax, (ArrayList<Objet>) this.objets.clone());
+		Backpack monClone = new Backpack(this.poidsMax, (LinkedList<Objet>) this.objets.clone());
 		return monClone;
 	}
 	@Override
@@ -65,8 +64,8 @@ public class Backpack implements Cloneable{
 		return this.poidsMax;
 	}
 	
-	public ArrayList<Objet> getObjets(){
-		ArrayList<Objet> res = new ArrayList<Objet>();
+	public LinkedList<Objet> getObjets(){
+		LinkedList<Objet> res = new LinkedList<Objet>();
 		for(Objet obj: objets)
 			res.add(obj);
 		return res;

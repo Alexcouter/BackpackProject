@@ -5,21 +5,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import backpack.Objet;
 
 public class TextParser {
 	FileReader input;
-	ArrayList<Objet> objets;
+	LinkedList<Objet> objets;
 
 	public TextParser(File fichier) throws FileNotFoundException{
 		super();
 		this.input = new FileReader(fichier);
-		this.objets = new ArrayList<Objet>();
+		this.objets = new LinkedList<Objet>();
 	}
 
-	public ArrayList<Objet> parse() throws IOException{
+	public LinkedList<Objet> parse() throws IOException{
 		BufferedReader bufRead = new BufferedReader(this.input);
 		String ligne = null;
 
