@@ -3,13 +3,14 @@ package backpack;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class PileObjet implements Cloneable{
 
 private Stack<Objet> pile;
 	
-	public PileObjet(ArrayList<Objet> list){
+	public PileObjet(LinkedList<Objet> list){
 		Collections.sort(list,new Comparator<Objet>() {
 	        @Override
 	        public int compare(Objet  o1, Objet o2)
@@ -28,10 +29,15 @@ private Stack<Objet> pile;
 	}
 	
 	
+	public void depileAll(){
+		this.pile.removeAllElements();
+	}
+	
 	
 	public PileObjet(Stack<Objet> mapile){
 		this.pile = new Stack<Objet>();
 		this.pile = mapile;
+		
 	}
 	
 	public PileObjet clone(){

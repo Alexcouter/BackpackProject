@@ -42,4 +42,8 @@ public class Objet implements Cloneable{
 		Objet monClone = new Objet(this.nom, this.poids, this.valeur);
 		return monClone;
 	}
+	
+	public float getValeur(){
+		return this.valeur;
+	}
 }

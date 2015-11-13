@@ -31,8 +31,8 @@ public class TextParser {
 				if(!array1[1].equals("")){
 					objets.add(
 							new Objet(
-									Integer.parseInt(array1[0]),  
-									Integer.parseInt(array1[1])
+									Integer.parseInt(array1[1]),  
+									Integer.parseInt(array1[0])
 									)
 							);
 //					System.out.println(array1[0] + " - " + array1[1]);
@@ -43,7 +43,7 @@ public class TextParser {
 
 			}
 
-		}
+		}this.input.close();
 		return objets;
 
 	}

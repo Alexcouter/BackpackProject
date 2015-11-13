@@ -1,5 +1,6 @@
 package app;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import backpack.ArbreN;
 import backpack.Backpack;
 import backpack.Objet;
 import backpack.PileObjet;
+import parser.TextParser;
 
 public class Main {
 
@@ -16,32 +18,51 @@ public class Main {
 		long startTime = System.currentTimeMillis(); 
 		Objet objet1 = new Objet("cuillere", 33, 4);
 		Objet objet2 = new Objet("couteau", 49, 5);
-		Objet objet3 = new Objet("fourchete", 60, 6);
-		Objet objet4 = new Objet("assiette", 32, 2);
-//		
+		Objet objet3 = new Objet("fourchete", 51, 5);
+		Objet objet4 = new Objet("assiette", 22, 2);
+		
 		ArrayList<Objet> collec1 = new ArrayList<Objet>();
 		collec1.add(objet1);
 		collec1.add(objet2);
 		collec1.add(objet3);
 		collec1.add(objet4);
 		
-
-		//TextParser parser = new TextParser(new File("data\\large02.txt"));
+		System.out.println(((int)( Math.random()) * 15));
+		TextParser parser = new TextParser(new File("data\\large03.txt"));
 		
-		
-//		
-		PileObjet pile = new PileObjet(collec1);
-		PileObjet pile2 = pile.clone();
-		Backpack sac1 = new Backpack(130, new LinkedList<Objet>());
+		PileObjet pile = new PileObjet(parser.parse());
+		//PileObjet pile2 = pile.clone();
+		Backpack sac1 = new Backpack(431, new LinkedList<Objet>());
+		long startTimeArbre1 = System.currentTimeMillis(); 
 		ArbreN aN = new ArbreN(sac1);
+		aN.creationArbreN2(pile.clone());
+		System.out.println("Arbre Cr��.");
+		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
+		//System.out.println("Solution V1: " + aN.solutionV1());
+		//aN.solutionV2(pile2);
+		System.out.println("Solution V3: " + aN.getSolution());
+		System.out.println("Solution V3: " + aN.getSacSolution() + "\tpoids du sac : " + aN.getSacSolution().getPoids() + "\tvaleur du sac" + aN.getSacSolution().getValeur());
+		
+		long estimatedTime = System.currentTimeMillis() - startTimeArbre1;
+		System.out.println("time : A1V3 " + estimatedTime + "ms");
+		
+		
+		
+		
+		
+		
+		
+		/*long startTimeArbre2 = System.currentTimeMillis(); 
+		ArbreN aN2 = new ArbreN(sac1);
 		aN.creationArbreN(pile);
-		System.out.println("Arbre Créé.");
+		System.out.println("Arbre Cr��.");
 		//System.out.println("nb Noeuds " + aN.getNbNoeuds());
 		//System.out.println("Solution V1: " + aN.solutionV1());
 		aN.solutionV2(pile2);
-//		System.out.println("Solution V2: " + aN.getSolution());
-		System.out.println("Solution V2: " + aN.getSacSolution());
-		
+		System.out.println("Solution V3: " + aN.getSolution());
+		System.out.println("Solution V3: " + aN.getSacSolution());
+		estimatedTime = System.currentTimeMillis() - startTimeArbre2;
+		System.out.println("time A2V2 : " + estimatedTime + "ms");*/
 		/*Arbre a = new Arbre(sac1);
 		a.creationArbre(pile);
 		//a.parcours();
@@ -84,7 +105,7 @@ public class Main {
 		*/
 		
 		
-		long estimatedTime = System.currentTimeMillis() - startTime;
+		estimatedTime = System.currentTimeMillis() - startTime;
 		
 		System.out.println("Runtime : "+ estimatedTime + "ms");
 		

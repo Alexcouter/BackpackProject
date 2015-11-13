@@ -12,6 +12,12 @@ public class Backpack implements Cloneable{
 		this.poidsMax = poidsMax;
 		this.objets = objets;
 	}
+	
+	public Backpack(float poidsMax) {
+		super();
+		this.poidsMax = poidsMax;
+		this.objets = new LinkedList<Objet>();
+	}
 
 	public float getDiff(){
 		return poidsMax - getPoids();
