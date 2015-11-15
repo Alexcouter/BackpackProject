@@ -6,10 +6,9 @@ import java.util.LinkedList;
 public class Backpack implements Cloneable{
 	float poidsMax;
 	LinkedList<Objet> objets;
-
+	
 	public Backpack(float poidsMax, LinkedList<Objet> objets) {
 		super();
-		this.poidsMax = poidsMax;
 		this.objets = objets;
 	}
 	
@@ -81,6 +80,30 @@ public class Backpack implements Cloneable{
 		objets.add(o);
 	}
 
+	void restructurer(LinkedList<Objet> objetsAAjouter){
+		LinkedList<Objet> objsTemp = new LinkedList<Objet>();
+		LinkedList<Objet> objsARetirer = new LinkedList<Objet>();
+		int indexObj;
+		
+		for(Objet obj: this.objets){
+			if(objsTemp.contains(obj))
+				objsARetirer.add(obj);
+			else
+				objsTemp.add(obj);
+		}
+		
+		for(Objet obj: objsARetirer){
+			indexObj = this.objets.indexOf(obj);
+			this.objets.remove(indexObj);
+			
+			do{
+				this.objets.add(indexObj, objetsAAjouter.getFirst());
+				objetsAAjouter.removeFirst();
+			}
+			while(!this.tropPlein());
+			
+		}
+	}
 	
 	public int compareTo(Object o) {
 		Backpack comp = (Backpack) o;

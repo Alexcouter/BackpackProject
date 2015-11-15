@@ -72,7 +72,7 @@ public class ArbreN {
 		return res;
 	}
 	
-	private static float calculEspérance(Objet o, ArbreN a){// valeurSacBranche + valeurObjetSuivant/PoidsObjetSuivant (poidsMaxduSac - poidsSacBranche)
+	private static float calculEsperance(Objet o, ArbreN a){// valeurSacBranche + valeurObjetSuivant/PoidsObjetSuivant (poidsMaxduSac - poidsSacBranche)
 		System.out.println(a.getSac().getValeur() + "+" + o.getCout()+"*("+a.getSac().getPoidsMax()+"-"+a.getSac().getPoids()+")");
 		return a.getSac().getValeur() + (o.getCout())*(a.getSac().getPoidsMax()-a.getSac().getPoids());
 	}
@@ -89,7 +89,7 @@ public class ArbreN {
 			ListIterator<ArbreN> iterator = arbres.listIterator(arbres.size()); 
 			while(iterator.hasPrevious()){ 
 			   ArbreN item = iterator.previous();
-			   float calcul = calculEspérance(pile.top(), item);
+			   float calcul = calculEsperance(pile.top(), item);
 					  
 			   if( calcul > solution+ 1){
 				   item.solutionV2(pile.clone());
@@ -159,7 +159,7 @@ public class ArbreN {
 			ListIterator<ArbreN> iterator = arbres.listIterator(arbres.size()); 
 			/*while(iterator.hasPrevious()){ 
 			   ArbreN item = iterator.previous();
-			   float calcul = calculEspérance(pile.top(), item);
+			   float calcul = calculEspï¿½rance(pile.top(), item);
 					  
 			   if( calcul >= solution+ 1){
 				   item.creationArbreN2(pile);
@@ -167,7 +167,7 @@ public class ArbreN {
 			   }
 			}*/
 			for(ArbreN arb : this.arbres){
-				float calcul = calculEspérance(pile.top(), arb);
+				float calcul = calculEsperance(pile.top(), arb);
 				  
 				   if( calcul >= solution+ 1){
 					   arb.creationArbreN2(pile);
@@ -193,7 +193,7 @@ public class ArbreN {
 		ListIterator<ArbreN> iterator = arbres.listIterator(arbres.size()); 
 		while(iterator.hasPrevious()){ 
 		   ArbreN item = iterator.previous();System.out.println("pile.top()" + pile.top().getPoids() + " " + pile.top().getCout()*pile.top().getPoids());
-		   float calcul = calculEspérance(pile.top(), item);
+		   float calcul = calculEsperance(pile.top(), item);
 			System.out.println(item.getSac().getPoids() + " calcul esperance : " + calcul);	  
 		  /* if( calcul >= solution+ 1){
 			   //item.creationArbreN2(pile);
@@ -204,7 +204,7 @@ public class ArbreN {
 	
 	
 	/*
-	 * test solution création arbre courcircuité total, + utilisation méthode solutionV2
+	 * test solution crï¿½ation arbre courcircuitï¿½ total, + utilisation mï¿½thode solutionV2
 	 */
 	public void creationArbreN3(PileObjet pile){
 		System.out.println("test 123 : "+ sac.getValeur() + " taille pile " + pile.estVide() + " -best current solution : " + ArbreN.solution + " nb noeuds : " + ArbreN.nbNoeuds);
