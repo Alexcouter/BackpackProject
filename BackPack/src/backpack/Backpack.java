@@ -9,6 +9,7 @@ public class Backpack implements Cloneable{
 	
 	public Backpack(float poidsMax, LinkedList<Objet> objets) {
 		super();
+		this.poidsMax = poidsMax;
 		this.objets = objets;
 	}
 	
