@@ -81,7 +81,7 @@ public class ArbreN {
 		float cout;
 		cout = Float.parseFloat(df.format(o.getCout()).replace(',', '.'));
 		d = a.getSac().getValeur() + (cout)*(a.getSac().getPoidsMax()-a.getSac().getPoids());
-		System.out.println(a.getSac().getValeur() + "+" + o.getCout()+"*("+a.getSac().getPoidsMax()+"-"+a.getSac().getPoids()+")" + " = " + (a.getSac().getValeur() + (o.getCout())*(a.getSac().getPoidsMax()-a.getSac().getPoids())) );
+		//System.out.println(a.getSac().getValeur() + "+" + o.getCout()+"*("+a.getSac().getPoidsMax()+"-"+a.getSac().getPoids()+")" + " = " + (a.getSac().getValeur() + (o.getCout())*(a.getSac().getPoidsMax()-a.getSac().getPoids())) );
 		return d;
 	}
 	
@@ -122,8 +122,8 @@ public class ArbreN {
 		if(pile.estVide() > 1){
 			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());//création nouveau sac
 			Objet o = pile.depiler();//on dépile un objet
-			if(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()+2){//s'il est possible de rajouter au moins une fois l'objet courant dans le sac
-				this.arbres.add(new ArbreN(newSac));//création nouveau fils sans rajout au sac
+			if(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){//s'il est possible de rajouter au moins une fois l'objet courant dans le sac
+				this.arbres.add(new ArbreN(newSac.clone()));//création nouveau fils sans rajout au sac
 				while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){//on crée un fils a chaque meme objet que l'on peu rajouter
 					newSac.addObjet(o);
 					this.arbres.add(new ArbreN(newSac.clone()));
@@ -137,7 +137,7 @@ public class ArbreN {
 		else if(pile.estVide() == 1){ //si c'est le dernier objet de la pile, on met autant d'objet que l'on peut sans créer de branche inutile
 			Backpack newSac = new Backpack(this.sac.getPoidsMax(), this.sac.getObjets());
 			Objet o = pile.depiler();
-			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()+2){
+			while(newSac.getPoids() + o.getPoids() <= newSac.getPoidsMax()){
 				newSac.addObjet(o);
 			}
 			this.arbres.add(new ArbreN(newSac));
@@ -163,7 +163,7 @@ public class ArbreN {
 			while(iterator.hasPrevious()){ 
 			   ArbreN item = iterator.previous();
 			   float calcul = calculEsperance(pile.top(), item);//on calcul l'espérance du sous ensemble
-			   System.out.println("valeur du sac : "+ item.getSac().getValeur() + " taille pile " + pile.estVide() + " -best current solution : " + ArbreN.solution + " nb noeuds : " + ArbreN.nbNoeuds + "Espérance " + calcul);
+			   System.out.println("valeur du sac : "+ item.getSac().getValeur() + " taille pile " + pile.estVide() + " -best current solution : " + ArbreN.solution + " nb noeuds : " + ArbreN.nbNoeuds + " Espérance " + calcul);
 			   if( calcul >= solution+ 1){//si ça vaut le coup on continue l'exploration du sous ensemble
 				   item.creationArbreN2(pile.clone());
 			   }
